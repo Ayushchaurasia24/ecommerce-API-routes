@@ -1,29 +1,16 @@
-const express = require("express");
-
+const express = require('express');
 const app = express();
-
-//student router
-const studentRoutes = require("./routes/students");
-//course router
-const courseRoutes = require("./routes/courses");
-
 const PORT = 3000;
 
-//Home Router
-app.get("/", (req, res) =>{
-    res.send("Welcome to the Student & Course Portal API!");  
-});
+const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
-//routers
-app.use("/students", studentRoutes);
-app.use("/courses", courseRoutes);
+//routes
+app.use("/users", userRoutes);
+app.use("/products", productRoutes);
+app.use("/cart", cartRoutes);
 
-//404 handler
-app.use((req,res) =>{
-    res.status(404).send("Page not found");
-});
-
-//apna server-----
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(PORT, ()=> {
+    console.log(`server runs at ${PORT}`);
 });
